@@ -5,30 +5,7 @@ var express = require('express'),
     eps     = require('ejs'),
     morgan  = require('morgan');
     var http = require('http');
-var server = http.createServer(app);
-var io = require('socket.io').listen(server, options);
-server.listen(PORT);
- 
-app.use('/static', express.static(__dirname + '/static'));
- 
-app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/index.html');
-});
-//подписываемся на событие соединения нового клиента
-io.sockets.on('connection', function (client) {
-    //подписываемся на событие message от клиента
-    client.on('message', function (message) {
-        try {
-            //посылаем сообщение себе
-            client.emit('message', message);
-            //посылаем сообщение всем клиентам, кроме себя
-            client.broadcast.emit('message', message);
-        } catch (e) {
-            console.log(e);
-            client.disconnect();
-        }
-    });
-});
+    var server = http.createServer(app);
 
 Object.assign=require('object-assign')
 
@@ -128,5 +105,29 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
+
+var io = require('socket.io').listen(server, options);
+server.listen(port);
+ 
+app.use('/static', express.static(__dirname + '/static'));
+ 
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/index.html');
+});
+//подписываемся на событие соединения нового клиента
+io.sockets.on('connection', function (client) {
+    //подписываемся на событие message от клиента
+    client.on('message', function (message) {
+        try {
+            //посылаем сообщение себе
+            client.emit('message', message);
+            //посылаем сообщение всем клиентам, кроме себя
+            client.broadcast.emit('message', message);
+        } catch (e) {
+            console.log(e);
+            client.disconnect();
+        }
+    });
+})
 
 module.exports = app ;
