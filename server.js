@@ -6,7 +6,9 @@ var express = require('express'),
     morgan  = require('morgan');
     var http = require('http');
     var server = http.createServer(app);
-
+var options = {
+//    'log level': 0
+};
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
