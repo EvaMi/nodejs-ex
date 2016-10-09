@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "chai": "^3.5.0",
+    "socket-chat-example": "0.0.1",
     "chai-http": "^2.0.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
@@ -24,12 +25,6 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/openshift/nodejs-ex.git"
-  },
-  {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
-  "dependencies": {}
   },
   "author": "Steve Speicher <sspeiche@gmail.com>",
   "license": "CC-BY-1.0",
