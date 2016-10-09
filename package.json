@@ -25,7 +25,8 @@
     "type": "git",
     "url": "http://github.com/openshift/nodejs-ex.git"
   },
-  "socket-chat-example": {
+  {
+  "name": "socket-chat-example",
   "version": "0.0.1",
   "description": "my first socket.io app",
   "dependencies": {}
